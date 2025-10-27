@@ -60,7 +60,7 @@ namespace TravaillerAvecString
 
             string small = "Voici un text simple youpi hourra tout fonctionne fonctionne";
             int countsentence1 = CompterMots(small);
-           // Console.WriteLine(countsentence1);
+            Console.WriteLine(countsentence1);
             string[] testA = ConstruireVocabulaire(small);
           
               for (int i = 0; i < testA.Length; i++)
@@ -103,8 +103,8 @@ namespace TravaillerAvecString
         public static string[] ConstruireVocabulaire(string texte)
         {
             string[] mots = new string[CompterMots(texte)];
-            string[] motsUnique = new string[CompterMots(texte)];
-            string[] motsCringe = new string[CompterMots(texte)];
+            string[] nonunique = new string[CompterMots(texte)];
+            string[] unique = new string[CompterMots(texte)];
 
             string empty = " ";
             int j = 0;
@@ -119,15 +119,86 @@ namespace TravaillerAvecString
                     j += 1;
                 }
             }
-            
-            
+
+            //
+            for (int i = 0; i < mots.Length; i++)
+            {
+                for (int k = 0; k < mots.Length; k++)
+                {
+                    int b = 0;
+                    int v = 0;
+                    if (mots[i] == mots[k])
+                    {
+                       
+                        if ( k == mots.Length-1)
+                        {
+                            if (v == 0 )
+                            {
+                                
+                                nonunique[b] = mots[i];
+                                b++;
+                                v++;
+                            }
+
+                        }
+                 
+
+                    }
+                }
+            }
+            int counterB = 0;
            
+            for (int i = 0; i < unique.Length; i++)
+            {
+                int v = 0;
+                v = CompterMots(unique[i]);
+                if (v > 0)
+                {
+                    counterB++;
+                }
+            }
+            string[] uniqueNoEmpty = new string[counterB];
+
+            int placerMots = 0;
+            for (int i = 0; i < unique.Length; i++)
+            {
+                int v = 0;
+                v = CompterMots(unique[i]);
+                if (v > 0)
+                {
+                    uniqueNoEmpty[placerMots] = unique[i];
+                }
+            }
+
+
+            bool simple = true;
             
+            for (int i =0; i < mots.Length; i++)
+            {
+              for(int k = 0; k < uniqueNoEmpty.Length; k++)
+                {
+                    int v = 0;
+                    //if (nonunique[k.Length] < 0)
+                    {
+                        v++;
+                    }
+                    if (mots[i] == uniqueNoEmpty[k])
+                    {
+                        v++;
+                    }
+                    if (v == 0)
+                    {
+                        unique[i] = mots[i];
+                    }
+
+                }
+            }
 
             
-
-            return mots;
+            return unique;
         }
+
+
 
         /// <summary>
         /// Compte les voyelles selon l'alphabet utilisé
